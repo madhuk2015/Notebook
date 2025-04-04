@@ -13,12 +13,12 @@ Last Updated: 6/11/2024
 --USE SCHEMA {{env}}_SCHEMA;
 use schema DEV_SCHEMA;
 
-CREATE OR REPLACE NOTEBOOK IDENTIFIER('"{{ env_var('SF_DATABASE') }}"."DEV_SCHEMA"."{{ env_var('SF_DATABASE') }}_notebook_1"')
+CREATE OR REPLACE NOTEBOOK IDENTIFIER('"{{DB}}"."DEV_SCHEMA"."{{DB}}_notebook_1"')
     FROM '@"DEMO_DB"."PUBLIC"."snowflake_extensions"/branches/"{{branch}}"/notebook_1/'
-    QUERY_WAREHOUSE = '{{ env_var('SF_WAREHOUSE') }}'
+    QUERY_WAREHOUSE = '{{WH}}'
     MAIN_FILE = 'sample_code.ipynb';
 
-ALTER NOTEBOOK "{{ env_var('SF_DATABASE') }}"."DEV_SCHEMA"."{{ env_var('SF_DATABASE') }}_notebook_1" ADD LIVE VERSION FROM LAST;
+ALTER NOTEBOOK "{{DB}}"."DEV_SCHEMA"."{{DB}}_notebook_1" ADD LIVE VERSION FROM LAST;
 /*------------------------------
 CREATE OR REPLACE NOTEBOOK IDENTIFIER('"DEMO_DB"."{{env}}_SCHEMA"."{{env}}_07_load_daily_city_metrics"')
     FROM '@"DEMO_DB"."INTEGRATIONS"."DEMO_GIT_REPO"/branches/"{{branch}}"/notebooks/07_load_daily_city_metrics/'
