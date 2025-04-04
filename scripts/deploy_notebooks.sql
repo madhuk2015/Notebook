@@ -15,6 +15,7 @@ use schema DEV_SCHEMA;
 CREATE OR REPLACE NOTEBOOK IDENTIFIER('"{{DB}}"."DEV_SCHEMA"."{{DB}}_notebook_1"')
     FROM '@"DEMO_DB"."PUBLIC"."SNOWFLAKE_EXTENSIONS"/branches/{{branch}}/notebook_1/'
     QUERY_WAREHOUSE = '{{WH}}'
+    IDLE_AUTO_SHUTDOWN_TIME_SECONDS = 60
     MAIN_FILE = 'sample_code.ipynb';
 
 ALTER NOTEBOOK "{{DB}}"."DEV_SCHEMA"."{{DB}}_notebook_1" ADD LIVE VERSION FROM LAST;
