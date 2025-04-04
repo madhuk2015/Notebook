@@ -30,13 +30,13 @@ jobs:
       # SnowCLI accesses the passowrd directly from the SNOWFLAKE_PASSWORD environmnet variable
       - name: Deploy notebooks
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SF_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SF_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SF_ROLE }}
-          SNOWFLAKE_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SF_DATABASE }}
-          SNOWFLAKE_SCHEMA: ${{ secrets.SF_SCHEMA }}
+          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+          SF_USER: ${{ secrets.SF_USER }}
+          SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
+          SF_ROLE: ${{ secrets.SF_ROLE }}
+          SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
+          SF_DATABASE: ${{ secrets.SF_DATABASE }}
+          SF_SCHEMA: ${{ secrets.SF_SCHEMA }}
         run: |
           snow sql -q "ALTER GIT REPOSITORY snowflake_extensions FETCH" --temporary-connection --account $SF_ACCOUNT --user $SF_USER --role $SF_ROLE --warehouse $SF_WAREHOUSE --database $SF_DATABASE --schema $SF_SCHEMA
           snow sql -q "EXECUTE IMMEDIATE FROM @snowflake_extensions/branches/Dev/scripts/deploy_notebooks.sql USING (env => 'dev', branch => 'Dev')" --temporary-connection --account $SF_ACCOUNT --user $SF_USER --role $SF_ROLE --warehouse $SF_WAREHOUSE --database $SF_DATABASE --schema $SF_SCHEMA
