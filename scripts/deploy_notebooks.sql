@@ -13,7 +13,7 @@ Last Updated: 6/11/2024
 use schema DEV_SCHEMA;
 
 CREATE OR REPLACE NOTEBOOK IDENTIFIER('"{{DB}}"."DEV_SCHEMA"."{{DB}}_notebook_1"')
-    FROM '@"DEMO_DB"."PUBLIC"."snowflake_extensions"/branches/{{branch}}/notebook_1/'
+    FROM '@"DEMO_DB"."PUBLIC"."SNOWFLAKE_EXTENSIONS"/branches/{{branch}}/notebook_1/'
     QUERY_WAREHOUSE = '{{WH}}'
     MAIN_FILE = 'sample_code.ipynb';
 
