@@ -39,7 +39,7 @@ jobs:
           SF_SCHEMA: ${{ secrets.SF_SCHEMA }}
         run: |
           snow sql -q "ALTER GIT REPOSITORY snowflake_extensions FETCH" --temporary-connection --account $SF_ACCOUNT --user $SF_USER --role $SF_ROLE --warehouse $SF_WAREHOUSE --database $SF_DATABASE --schema $SF_SCHEMA
-          snow sql -q "EXECUTE IMMEDIATE FROM @snowflake_extensions/branches/Dev/scripts/deploy_notebooks.sql USING (env => 'dev', branch => 'Dev')" --temporary-connection --account $SF_ACCOUNT --user $SF_USER --role $SF_ROLE --warehouse $SF_WAREHOUSE --database $SF_DATABASE --schema $SF_SCHEMA
+          snow sql -q "EXECUTE IMMEDIATE FROM @snowflake_extensions/branches/Dev/scripts/deploy_notebooks.sql USING ( branch => 'Dev')" --temporary-connection --account $SF_ACCOUNT --user $SF_USER --role $SF_ROLE --warehouse $SF_WAREHOUSE --database $SF_DATABASE --schema $SF_SCHEMA
 
           : # Ideally both Snow CLI and the Python Connector could be configured entirely from env variables
           : #python $GITHUB_WORKSPACE/scripts/deploy_task_dag.py DEMO_DB PROD_SCHEMA
